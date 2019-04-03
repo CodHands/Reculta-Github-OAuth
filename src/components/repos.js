@@ -8,7 +8,7 @@ export default class Repos extends Component {
       super(props);
   }
 
-  starRepos = (repo,owner,name) => {
+  starRepos = (owner,name) => {
     var obj = {  
       method: 'PUT',
       headers: {
@@ -26,7 +26,7 @@ export default class Repos extends Component {
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
   }
 
-  unStarRepos = (repo,owner,name) => {
+  unStarRepos = (owner,name) => {
     var obj = {  
       method: 'DELETE',
       headers: {
@@ -45,11 +45,11 @@ export default class Repos extends Component {
           <div className="repo-container">
                 {this.props.repos.map((repo,index) => {
                     return <div className="repositories mb-4" key={index}>
-                              <button className="gh-btn" id="gh-btn" onClick={() => this.unStarRepos(repo,repo.owner.login,repo.name)}>
+                              <button className="gh-btn" id="gh-btn" onClick={() => this.unStarRepos(repo.owner.login,repo.name)}>
                                 <span className="gh-ico" aria-hidden="true"></span>
                                 <span className="gh-text" id="gh-text">Unstar</span>
                               </button>
-                              <button className="gh-btn mr-2" id="gh-btn" onClick={() => this.starRepos(repo,repo.owner.login,repo.name)}>
+                              <button className="gh-btn mr-2" id="gh-btn" onClick={() => this.starRepos(repo.owner.login,repo.name)}>
                                 <span className="gh-ico" aria-hidden="true"></span>
                                 <span className="gh-text" id="gh-text">Star</span>
                               </button>
